@@ -28,12 +28,22 @@ def euclidean_gcd_iter(a, b):
 
 
 # extended euclidean algorithm
-def extended_euclid_gcd(a, b):
-    pass
+# recursive solution
+def extended_euclid_gcd_recursive(a, b, coeffs):
+    if b == 0:
+        coeffs[0], coeffs[1] = 1, 0
+        return a
+    coeffs1 = [1, 1]
+    res = extended_euclid_gcd_recursive(b, a%b, coeffs1)
+    coeffs[0], coeffs[1] = coeffs1[1], coeffs1[0]-(a//b)*coeffs1[1]
+    return res
 
 
 if __name__ == '__main__':
-    a, b = 36, 15
+    a, b = 35, 15
     print('[Simple GCD] GCD({}, {})={}'.format(a, b, simple_gcd(a, b)))
     print('[Euclidean GCD] GCD({}, {})={}'.format(a, b, euclidean_gcd(a, b)))
     print('[Euclidean GCD] GCD({}, {})={}'.format(a, b, euclidean_gcd_iter(a, b)))
+    coeffs = [1, 1]
+    d = extended_euclid_gcd_recursive(a, b, coeffs)
+    print('[Extended Eucledian GCD] GCD({}, {})={} Coeffs={}'.format(a, b, d, coeffs))
