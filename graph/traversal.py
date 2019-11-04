@@ -1,4 +1,4 @@
-from graph import Graph
+from graph import UndirectedGraph
 from collections import deque
 
 def bfs(graph, start_node):
@@ -41,7 +41,7 @@ def dfs_iterative(graph, start_node):
 
 
 if __name__ == '__main__':
-    g = Graph()
+    g = UndirectedGraph()
     g.add_edge(0, 1)
     g.add_edge(0, 2)
     g.add_edge(0, 3)
